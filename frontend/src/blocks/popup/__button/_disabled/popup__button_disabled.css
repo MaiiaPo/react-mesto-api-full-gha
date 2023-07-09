@@ -1,0 +1,14 @@
+.popup__button_disabled {
+  opacity: .2;
+  color: #000;
+  cursor: not-allowed;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+@media screen and (min-width: 1024px) {
+  .popup__button_disabled:hover {
+    cursor: not-allowed;
+    opacity: .2;
+  }
+}

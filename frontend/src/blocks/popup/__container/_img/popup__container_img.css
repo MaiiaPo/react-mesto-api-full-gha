@@ -1,0 +1,6 @@
+.popup__container_img {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  width: 430px;
+}

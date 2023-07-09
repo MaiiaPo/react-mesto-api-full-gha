@@ -1,0 +1,28 @@
+.profile__add-button {
+  background: url(../../../images/addButton.svg) center/18px 18px no-repeat;
+  background-color: rgba(0, 0, 0, 1);
+  border: 2px solid #fff;
+  width: 282px;
+  min-height: 50px;
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+@media screen and (min-width: 768px) {
+  .profile__add-button {
+    width: calc(302px*2);
+    background-size: 22px 22px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .profile__add-button {
+    width: 150px;
+    height: 50px;
+    margin-left: auto;
+    margin-top: 37px;
+  }
+}

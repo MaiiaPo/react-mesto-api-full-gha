@@ -1,0 +1,11 @@
+.profile__title {
+  display: flex;
+  align-items: center;
+  padding-left: 38px;
+}
+
+@media screen and (min-width: 1024px) {
+  .profile__title {
+    padding-left: 0;
+  }
+}

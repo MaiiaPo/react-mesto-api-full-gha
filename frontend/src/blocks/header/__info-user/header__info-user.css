@@ -1,0 +1,4 @@
+.header__info-user {
+  display: flex;
+  gap: 24px;
+}
