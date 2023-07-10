@@ -5,12 +5,12 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: [https://github.com/...](https://github.com/MaiiaPo/react-mesto-api-full-gha)
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.110.76
 
-Frontend https://...
+Frontend https://maiiapo.mesto.students.nomoredomains.work
 
-Backend https://...
+Backend https://api.maiiapo.mesto.student.nomoredomains.work
