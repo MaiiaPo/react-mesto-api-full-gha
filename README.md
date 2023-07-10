@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.110.76
+IP 158.160.110.76
 
 Frontend https://maiiapo.mesto.students.nomoredomains.work
 
