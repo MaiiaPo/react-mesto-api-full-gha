@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(cors);
 app.use(requestLogger);
 router.use(express.json());
+
 app.use(router);
 
 app.use((req, res, next) => next(new NotFoundError('Несуществующая страница')));
