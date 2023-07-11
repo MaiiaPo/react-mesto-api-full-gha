@@ -7,9 +7,9 @@
 
 Адрес репозитория: [https://github.com/...](https://github.com/MaiiaPo/react-mesto-api-full-gha)
 
-## Ссылки на проект
+## Ссылки на проект.
 
-IP 158.160.110.76
+IP 51.250.89.50
 
 Frontend https://maiiapo.mesto.students.nomoredomains.work
 
