@@ -78,7 +78,7 @@ const api = new Api({
   address: 'https://api.maiiapo.mesto.student.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
-    authorization: `Bearer ${localStorage.getItem('token')}`
+    authorization: `Bearer ${localStorage.getItem('jwt')}`
   }
 });
 
