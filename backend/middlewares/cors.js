@@ -1,9 +1,10 @@
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'http://maiiapo.mesto.students.nomoredomains.work/',
-  'https://maiiapo.mesto.students.nomoredomains.work/',
-  'http://api.maiiapo.mesto.student.nomoredomains.work/',
-  'https://api.maiiapo.mesto.student.nomoredomains.work/',
+  'http://maiiapo.mesto.students.nomoredomains.work',
+  'https://maiiapo.mesto.students.nomoredomains.work',
+  'https://maiiapo.mesto.students.nomoredomains.work',
+  'http://api.maiiapo.mesto.student.nomoredomains.work',
+  'https://api.maiiapo.mesto.student.nomoredomains.work',
   'localhost:3000',
   'http://localhost:3000',
   'https://localhost:3000',
