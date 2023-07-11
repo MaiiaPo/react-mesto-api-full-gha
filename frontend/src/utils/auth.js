@@ -48,5 +48,5 @@ class Api {
 }
 
 export const auth = new Api({
-  baseUrl: 'https://auth.nomoreparties.co',
+  baseUrl: 'https://api.maiiapo.mesto.student.nomoredomains.work',
 });

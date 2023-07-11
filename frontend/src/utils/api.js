@@ -1,6 +1,6 @@
 class Api {
-  constructor({token, address}) {
-    this._token = token;
+  constructor({headers, address}) {
+    this._headers = headers;
     this._address = address;
   }
 
@@ -17,27 +17,20 @@ class Api {
   // Получение существующих карточек с сервера
   getInitialCards() {
     return this._request('/cards', {
-      headers: {
-        authorization: this._token,
-      },
+      headers: this._headers,
     })
   }
 
   getUserData() {
     return this._request('/users/me', {
-      headers: {
-        authorization: this._token,
-      },
+      headers: this._headers,
     })
   }
 
   updateUserData(userData) {
     return this._request('/users/me', {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json',
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: userData.name,
         about: userData.about,
@@ -48,10 +41,7 @@ class Api {
   editAvatar(link) {
     return this._request('/users/me/avatar', {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-type': 'application/json',
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: link.avatar,
       }),
@@ -61,10 +51,7 @@ class Api {
   addCard(data) {
     return this._request('/cards', {
       method: 'POST',
-      headers: {
-        authorization: this._token,
-        'Content-type': 'application/json',
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -75,25 +62,24 @@ class Api {
   removeCard(cardId) {
     return this._request(`/cards/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._token,
-      },
+      headers: this._headers,
     })
   }
 
   changeLikeCardStatus(cardId, isLiked) {
     return this._request(`/cards/likes/${cardId}`, {
       method: isLiked ? 'PUT' : 'DELETE',
-      headers: {
-        authorization: this._token,
-      },
+      headers: this._headers,
     })
   }
 }
 
 const api = new Api({
-  address: 'https://mesto.nomoreparties.co/v1/cohort-62',
-  token: '2966f134-ddf9-4ef6-92e6-3cc74f9bff8f',
+  address: 'https://api.maiiapo.mesto.student.nomoredomains.work',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${localStorage.getItem('token')}`
+  }
 });
 
 export default api;
