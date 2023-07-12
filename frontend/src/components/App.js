@@ -59,6 +59,14 @@ function App() {
           navigate("/", {replace: true})
           setUserEmail(res.email);
           setCurrentUser(res);
+
+          api.getInitialCards()
+            .then((cardsData) => {
+              setCards(cardsData);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
         }
       })
         .catch((err) => console.error(err));

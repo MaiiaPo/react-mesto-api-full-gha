@@ -29,6 +29,9 @@ module.exports.deleteCardById = (req, res, next) => {
   Card.findById(cardId)
     .orFail(new Error('NotValidId'))
     .then((card) => {
+      console.log('req.user._id', req.user._id)
+      console.log('card.owner', card.owner)
+      console.log('card.owner.toHexString()', card.owner.toHexString())
       if (!card.owner.equals(req.user._id)) {
         return next(new ForbiddenError('Нельзя удалить чужую карточку'));
       }
