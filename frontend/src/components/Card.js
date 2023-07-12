@@ -5,7 +5,9 @@ function Card({card, onCardClick, onCardDelete, onCardLike}) {
   const currentUser = React.useContext(CurrentUserContext);
 
   // Являемся ли мы владельцем текущей карточки
-  const isOwn = card.owner === currentUser._id;
+  const isOwn = card.owner._id
+    ? card.owner._id  === currentUser._id
+    : card.owner === currentUser._id;
   // Есть ли у карточки лайк, поставленный текущим пользователем
   const isLiked = card.likes.includes(currentUser._id);
 

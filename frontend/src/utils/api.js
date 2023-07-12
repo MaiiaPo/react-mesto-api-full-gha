@@ -52,10 +52,7 @@ class Api {
     return this._request('/cards', {
       method: 'POST',
       headers: this._headers,
-      body: JSON.stringify({
-        name: data.name,
-        link: data.link,
-      }),
+      body: JSON.stringify(data),
     })
   }
 

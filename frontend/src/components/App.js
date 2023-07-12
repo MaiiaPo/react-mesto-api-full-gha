@@ -58,6 +58,7 @@ function App() {
           setLoggedIn(true);
           navigate("/", {replace: true})
           setUserEmail(res.email);
+          setCurrentUser(res);
         }
       })
         .catch((err) => console.error(err));
@@ -67,8 +68,8 @@ function App() {
   useEffect(() => {
     loggedIn && Promise.all([api.getUserData(), api.getInitialCards()])
       .then(([userData, cardsData]) => {
-        setCurrentUser(userData);
         setCards(cardsData);
+        setCurrentUser(userData);
       })
       .catch((err) => {
         console.error(err);
@@ -201,6 +202,7 @@ function App() {
         setUserEmail(email);
         setLoggedIn(true);
         navigate('/');
+        tokenCheck();
       }
     })
       .catch(err => {
