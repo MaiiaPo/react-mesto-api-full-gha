@@ -42,47 +42,38 @@ function App() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // настало время проверить токен
-    tokenCheck();
-  }, [])
-
-  const tokenCheck = () => {
-    // если у пользователя есть токен в localStorage,
-    // эта функция проверит, действующий он или нет
-    if (localStorage.getItem('jwt')){
-      const jwt = localStorage.getItem('jwt');
-
-      auth.getToken(jwt).then((res) => {
-        if (res){
-          setLoggedIn(true);
-          navigate("/", {replace: true})
-          setUserEmail(res.email);
-          setCurrentUser(res);
-
-          api.getInitialCards()
-            .then((cardsData) => {
-              setCards(cardsData);
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        }
-      })
-        .catch((err) => console.error(err));
-    }
+  function handleLogin ({ email, password }) {
+    auth.authorize(email, password).then((data) => {
+      localStorage.setItem('jwt', data.token);
+      setLoggedIn(true);
+      setUserEmail(email);
+      setCurrentUser({
+        email: email,
+      });
+      navigate('/');
+    })
+      .catch(err => {
+        console.error(err)
+        setIsInfoTooltipOpen(true);
+        setIsSuccessAuth(false)
+      });
   }
 
   useEffect(() => {
-    loggedIn && Promise.all([api.getUserData(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
-        setCards(cardsData);
-        setCurrentUser(userData);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [loggedIn]);
+    const jwt = localStorage.getItem('jwt');
+    if (jwt){
+      loggedIn && Promise.all([api.getUserData(), api.getInitialCards()])
+        .then(([userData, cardsData]) => {
+          setLoggedIn(true);
+          setUserEmail(userData.email);
+          setCards(cardsData);
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [loggedIn, navigate]);
 
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -184,8 +175,7 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  function handleRegister (values) {
-    const { email, password } = values;
+  function handleRegister ({ email, password }) {
     auth.register(email, password)
       .then(() => {
         setIsInfoTooltipOpen(true);
@@ -199,30 +189,12 @@ function App() {
       });
   }
 
-  function handleLogin (values) {
-    const { email, password } = values;
-    if (!email || !password){
-      return;
-    }
-
-    auth.authorize(email, password).then((data) => {
-      if (data.token){
-        setUserEmail(email);
-        setLoggedIn(true);
-        navigate('/');
-        tokenCheck();
-      }
-    })
-      .catch(err => {
-        console.error(err)
-        setIsInfoTooltipOpen(true);
-        setIsSuccessAuth(false)
-      });
-  }
-
   function handleSignOut() {
     localStorage.removeItem('jwt');
     setUserEmail('');
+    setCurrentUser({});
+    setLoggedIn(false);
+    navigate('/signin', { replace: true });
   }
 
   return (

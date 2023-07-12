@@ -4,15 +4,20 @@ import {useForm} from "../hooks/useForm";
 function Login( { handleLogin }) {
   const {values, handleChange} = useForm({});
 
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    if (!values.email || !values.password) {
+      return;
+    }
+    handleLogin(values);
+  }
+
   return (
     <div className="content auth">
         <h1 className="auth__title">Вход</h1>
         <form
           className="auth__form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleLogin(values);
-          }}
+          onSubmit={handleSubmit}
         >
           <input
             className="auth__input"

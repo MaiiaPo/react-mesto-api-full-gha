@@ -11,6 +11,7 @@ class Api {
   }
 
   _request(url, options) {
+    options.headers.Authorization = `Bearer ${localStorage.getItem('jwt')}`
     return fetch(`${this._address}${url}`, options).then(this._checkResponse)
   }
 
@@ -75,7 +76,6 @@ const api = new Api({
   address: 'https://api.maiiapo.mesto.student.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
-    authorization: `Bearer ${localStorage.getItem('jwt')}`
   }
 });
 
