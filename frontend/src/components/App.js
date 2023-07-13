@@ -73,7 +73,7 @@ function App() {
           console.error(err);
         });
     }
-  }, [loggedIn, navigate]);
+  }, [loggedIn]);
 
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -101,6 +101,26 @@ function App() {
   }
 
   const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard
+
+  useEffect(() => {
+    // проверка токена
+    tokenCheck();
+  }, [])
+
+  const tokenCheck = () => {
+    if (localStorage.getItem('jwt')){
+      const jwt = localStorage.getItem('jwt');
+
+      auth.getToken(jwt).then((res) => {
+        if (res){
+          setLoggedIn(true);
+          navigate("/", {replace: true})
+          setUserEmail(res.email);
+        }
+      })
+        .catch((err) => console.error(err));
+    }
+  }
 
   useEffect(() => {
     function closeByEscape(evt) {
